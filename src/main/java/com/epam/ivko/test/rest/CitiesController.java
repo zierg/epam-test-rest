@@ -25,16 +25,15 @@ public class CitiesController {
     public List<CityResponseEntity> getCities(
             @RequestParam(name = "add-density", required = false, defaultValue = "false") boolean enhanceWithDensity,
             @RequestParam(name = "sort-by", required = false, defaultValue = "none") CitiesSorting citiesSorting,
-            @RequestParam(name = "sort-descending", required = false, defaultValue = "false") boolean sortDescending
+            @RequestParam(name = "sort-descending", required = false, defaultValue = "false") boolean sortDescending,
+            @RequestParam(name = "name-contains", required = false) String nameContains
     ) {
-        var paramsBuilder = GetCitiesParams.builder();
-
-        paramsBuilder
+        GetCitiesParams params = GetCitiesParams.builder()
                 .enhanceWithDensity(enhanceWithDensity)
                 .sorting(citiesSorting)
-                .sortDescending(sortDescending);
-
-        GetCitiesParams params = paramsBuilder.build();
+                .sortDescending(sortDescending)
+                .nameContains(nameContains)
+                .build();
 
         return citiesService.getCities(params);
     }

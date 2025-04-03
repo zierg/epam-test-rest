@@ -9,16 +9,14 @@ import org.springframework.web.bind.annotation.InitBinder;
 @ControllerAdvice
 public class WebConfig {
 
-    private final CitiesSortingEditor citiesSortingEditor;
+    private final StringToEnumIgnoreCaseConverter stringToEnumIgnoreCaseConverter;
 
-    public WebConfig(
-            CitiesSortingEditor citiesSortingEditor
-    ) {
-        this.citiesSortingEditor = citiesSortingEditor;
+    public WebConfig(StringToEnumIgnoreCaseConverter stringToEnumIgnoreCaseConverter) {
+        this.stringToEnumIgnoreCaseConverter = stringToEnumIgnoreCaseConverter;
     }
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(CitiesSorting.class, citiesSortingEditor);
+        binder.registerCustomEditor(CitiesSorting.class, stringToEnumIgnoreCaseConverter);
     }
 }

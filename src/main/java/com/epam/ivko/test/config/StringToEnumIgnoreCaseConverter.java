@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.beans.PropertyEditorSupport;
 
 @Component
-public class CitiesSortingEditor extends PropertyEditorSupport {
+public class StringToEnumIgnoreCaseConverter extends PropertyEditorSupport {
 
     @Override
     public void setAsText(String text) {

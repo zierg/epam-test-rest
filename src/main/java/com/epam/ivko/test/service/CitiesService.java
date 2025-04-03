@@ -23,10 +23,34 @@ public class CitiesService {
     public List<CityResponseEntity> getCities(GetCitiesParams params) {
         Stream<CityResponseEntity> stream = storage.getAll().stream().map(this::createResponseEntity);
 
+        stream = processNameContains(params, stream);
         stream = processDensity(params, stream);
         stream = processSorting(params, stream);
 
         return stream.toList();
+    }
+
+    private CityResponseEntity createResponseEntity(City city) {
+        return new CityResponseEntity(
+                city.getName(),
+                city.getArea(),
+                city.getPopulation()
+        );
+    }
+
+    private Stream<CityResponseEntity> processNameContains(
+            GetCitiesParams params,
+            Stream<CityResponseEntity> stream
+    ) {
+        String nameContains = params.getNameContains();
+
+        if (nameContains == null || nameContains.isEmpty()) {
+            return stream;
+        }
+
+        return stream.filter(
+                city -> city.getName().contains(nameContains)
+        );
     }
 
     private Stream<CityResponseEntity> processDensity(
@@ -37,6 +61,11 @@ public class CitiesService {
             stream = stream.peek(this::enhanceWithDensity);
         }
         return stream;
+    }
+
+    private void enhanceWithDensity(CityResponseEntity city) {
+        Double density = city.getPopulation() / city.getArea();
+        city.setDensity(density);
     }
 
     private Stream<CityResponseEntity> processSorting(
@@ -54,18 +83,5 @@ public class CitiesService {
         }
 
        return stream.sorted(sortingComparator);
-    }
-
-    private CityResponseEntity createResponseEntity(City city) {
-        return new CityResponseEntity(
-                city.getName(),
-                city.getArea(),
-                city.getPopulation()
-        );
-    }
-
-    private void enhanceWithDensity(CityResponseEntity city) {
-        Double density = city.getPopulation() / city.getArea();
-        city.setDensity(density);
     }
 }
