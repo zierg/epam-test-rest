@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-@SuppressWarnings("unused")
 @Service
 public class CitiesStorage {
 
