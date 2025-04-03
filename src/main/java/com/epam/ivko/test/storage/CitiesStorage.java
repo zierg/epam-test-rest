@@ -22,6 +22,10 @@ public class CitiesStorage {
         loadCities();
     }
 
+    public void addCity(City city) {
+        cache.put(city);
+    }
+
     public Set<City> getAll() {
         return cache.getAll();
     }

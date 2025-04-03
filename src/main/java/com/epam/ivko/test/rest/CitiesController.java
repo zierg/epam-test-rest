@@ -3,9 +3,9 @@ package com.epam.ivko.test.rest;
 import com.epam.ivko.test.service.CitiesService;
 import com.epam.ivko.test.service.CitiesSorting;
 import com.epam.ivko.test.service.GetCitiesParams;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.epam.ivko.test.storage.IncorrectCityException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class CitiesController {
     }
 
     @GetMapping("/cities")
-    public List<CityRestEntity> getCities(
+    public List<CityDto> getCities(
             @RequestParam(name = "add-density", required = false, defaultValue = "false") boolean enhanceWithDensity,
             @RequestParam(name = "sort-by", required = false, defaultValue = "none") CitiesSorting citiesSorting,
             @RequestParam(name = "sort-descending", required = false, defaultValue = "false") boolean sortDescending,
@@ -36,5 +36,16 @@ public class CitiesController {
                 .build();
 
         return citiesService.getCities(params);
+    }
+
+    @PostMapping("/cities")
+    public void addCity(@RequestBody CityDto city) {
+        citiesService.addCity(city);
+    }
+
+    @ExceptionHandler(IncorrectCityException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleException(IncorrectCityException ex) {
+        return ex.getMessage();
     }
 }
