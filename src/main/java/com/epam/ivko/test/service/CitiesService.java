@@ -23,11 +23,37 @@ public class CitiesService {
     public List<CityResponseEntity> getCities(GetCitiesParams params) {
         Stream<CityResponseEntity> stream = storage.getAll().stream().map(this::createResponseEntity);
 
+        stream = processDensity(params, stream);
+        stream = processSorting(params, stream);
+
+        return stream.toList();
+    }
+
+    private Stream<CityResponseEntity> processDensity(
+            GetCitiesParams params,
+            Stream<CityResponseEntity> stream
+    ) {
         if (params.isEnhanceWithDensity()) {
             stream = stream.peek(this::enhanceWithDensity);
         }
+        return stream;
+    }
 
-        return stream.toList();
+    private Stream<CityResponseEntity> processSorting(
+            GetCitiesParams params,
+            Stream<CityResponseEntity> stream
+    ) {
+        var sortingComparator = params.getSorting().getComparator();
+
+        if (sortingComparator == null) {
+            return stream;
+        }
+
+        if (params.isSortDescending()) {
+            sortingComparator = sortingComparator.reversed();
+        }
+
+       return stream.sorted(sortingComparator);
     }
 
     private CityResponseEntity createResponseEntity(City city) {

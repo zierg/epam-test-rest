@@ -1,6 +1,7 @@
 package com.epam.ivko.test.rest;
 
 import com.epam.ivko.test.service.CitiesService;
+import com.epam.ivko.test.service.CitiesSorting;
 import com.epam.ivko.test.service.GetCitiesParams;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,11 +23,14 @@ public class CitiesController {
 
     @GetMapping("/cities")
     public List<CityResponseEntity> getCities(
-            @RequestParam(name = "add-density", required = false, defaultValue = "false") boolean enhanceWithDensity
+            @RequestParam(name = "add-density", required = false, defaultValue = "false") boolean enhanceWithDensity,
+            @RequestParam(name = "sort-by", required = false, defaultValue = "none") CitiesSorting citiesSorting
     ) {
         var paramsBuilder = GetCitiesParams.builder();
 
-        paramsBuilder.enhanceWithDensity(enhanceWithDensity);
+        paramsBuilder
+                .enhanceWithDensity(enhanceWithDensity)
+                .sorting(citiesSorting);
 
         GetCitiesParams params = paramsBuilder.build();
 

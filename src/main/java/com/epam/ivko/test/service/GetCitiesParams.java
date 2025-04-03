@@ -18,16 +18,8 @@ public class GetCitiesParams {
 
     // does not apply if sorting set to NONE
     @Builder.Default
-    boolean sortAscending = true;
+    boolean sortDescending = false;
 
     @Builder.Default
     String nameContains = null;
-}
-
-@SuppressWarnings("unused")
-enum CitiesSorting {
-    NONE,
-    NAME,
-    POPULATION,
-    AREA
 }
