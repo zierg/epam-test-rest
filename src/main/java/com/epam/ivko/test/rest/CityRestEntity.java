@@ -10,14 +10,14 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CityResponseEntity {
+public class CityRestEntity {
 
     String name;
     double area;
     int population;
     Double density;
 
-    public CityResponseEntity(
+    public CityRestEntity(
             String name,
             double area,
             int population

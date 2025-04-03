@@ -1,6 +1,6 @@
 package com.epam.ivko.test.service;
 
-import com.epam.ivko.test.rest.CityResponseEntity;
+import com.epam.ivko.test.rest.CityRestEntity;
 import lombok.Getter;
 
 import java.util.Comparator;
@@ -9,13 +9,13 @@ import java.util.Comparator;
 @SuppressWarnings("unused")
 public enum CitiesSorting {
     NONE(null),
-    NAME(Comparator.comparing(CityResponseEntity::getName)),
-    POPULATION(Comparator.comparing(CityResponseEntity::getPopulation)),
-    AREA(Comparator.comparing(CityResponseEntity::getArea));
+    NAME(Comparator.comparing(CityRestEntity::getName)),
+    POPULATION(Comparator.comparing(CityRestEntity::getPopulation)),
+    AREA(Comparator.comparing(CityRestEntity::getArea));
 
-    private final Comparator<CityResponseEntity> comparator;
+    private final Comparator<CityRestEntity> comparator;
 
-    CitiesSorting(Comparator<CityResponseEntity> comparator) {
+    CitiesSorting(Comparator<CityRestEntity> comparator) {
         this.comparator = comparator;
     }
 }

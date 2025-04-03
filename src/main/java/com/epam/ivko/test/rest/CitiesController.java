@@ -22,7 +22,7 @@ public class CitiesController {
     }
 
     @GetMapping("/cities")
-    public List<CityResponseEntity> getCities(
+    public List<CityRestEntity> getCities(
             @RequestParam(name = "add-density", required = false, defaultValue = "false") boolean enhanceWithDensity,
             @RequestParam(name = "sort-by", required = false, defaultValue = "none") CitiesSorting citiesSorting,
             @RequestParam(name = "sort-descending", required = false, defaultValue = "false") boolean sortDescending,

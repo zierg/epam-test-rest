@@ -1,6 +1,6 @@
 package com.epam.ivko.test.service;
 
-import com.epam.ivko.test.rest.CityResponseEntity;
+import com.epam.ivko.test.rest.CityRestEntity;
 import com.epam.ivko.test.storage.CitiesStorage;
 import com.epam.ivko.test.storage.entity.City;
 import org.springframework.stereotype.Service;
@@ -20,8 +20,8 @@ public class CitiesService {
         this.storage = storage;
     }
 
-    public List<CityResponseEntity> getCities(GetCitiesParams params) {
-        Stream<CityResponseEntity> stream = storage.getAll().stream().map(this::createResponseEntity);
+    public List<CityRestEntity> getCities(GetCitiesParams params) {
+        Stream<CityRestEntity> stream = storage.getAll().stream().map(this::createResponseEntity);
 
         stream = processNameContains(params, stream);
         stream = processDensity(params, stream);
@@ -30,17 +30,17 @@ public class CitiesService {
         return stream.toList();
     }
 
-    private CityResponseEntity createResponseEntity(City city) {
-        return new CityResponseEntity(
+    private CityRestEntity createResponseEntity(City city) {
+        return new CityRestEntity(
                 city.getName(),
                 city.getArea(),
                 city.getPopulation()
         );
     }
 
-    private Stream<CityResponseEntity> processNameContains(
+    private Stream<CityRestEntity> processNameContains(
             GetCitiesParams params,
-            Stream<CityResponseEntity> stream
+            Stream<CityRestEntity> stream
     ) {
         String nameContains = params.getNameContains();
 
@@ -53,9 +53,9 @@ public class CitiesService {
         );
     }
 
-    private Stream<CityResponseEntity> processDensity(
+    private Stream<CityRestEntity> processDensity(
             GetCitiesParams params,
-            Stream<CityResponseEntity> stream
+            Stream<CityRestEntity> stream
     ) {
         if (params.isEnhanceWithDensity()) {
             stream = stream.peek(this::enhanceWithDensity);
@@ -63,14 +63,14 @@ public class CitiesService {
         return stream;
     }
 
-    private void enhanceWithDensity(CityResponseEntity city) {
+    private void enhanceWithDensity(CityRestEntity city) {
         Double density = city.getPopulation() / city.getArea();
         city.setDensity(density);
     }
 
-    private Stream<CityResponseEntity> processSorting(
+    private Stream<CityRestEntity> processSorting(
             GetCitiesParams params,
-            Stream<CityResponseEntity> stream
+            Stream<CityRestEntity> stream
     ) {
         var sortingComparator = params.getSorting().getComparator();
 
