@@ -1,6 +1,6 @@
 package com.epam.ivko.test.storage;
 
-import com.epam.ivko.test.storage.entity.City;
+import com.epam.ivko.test.entity.City;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +20,7 @@ public class JsonPersistentStorage {
     private final String additionalCitiesFilePath;
     private final ObjectMapper mapper;
 
-    public JsonPersistentStorage(
+    public JsonPersistentStorage(  // todo: h2
             @Value("${cities.source-file}") String filePath,
             @Value("${cities.additional-source-file:#{null}}") String additionalCitiesFilePath,
             ObjectMapper mapper

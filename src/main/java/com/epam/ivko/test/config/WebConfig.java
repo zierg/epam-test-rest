@@ -19,4 +19,6 @@ public class WebConfig {
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(CitiesSorting.class, stringToEnumIgnoreCaseConverter);
     }
+
+    // todo: exception handling
 }

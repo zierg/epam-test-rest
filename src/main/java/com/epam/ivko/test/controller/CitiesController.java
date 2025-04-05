@@ -1,5 +1,6 @@
-package com.epam.ivko.test.rest;
+package com.epam.ivko.test.controller;
 
+import com.epam.ivko.test.dto.CityDto;
 import com.epam.ivko.test.service.CitiesService;
 import com.epam.ivko.test.service.CitiesSorting;
 import com.epam.ivko.test.service.GetCitiesParams;
@@ -11,7 +12,9 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 @RestController
-public class CitiesController {
+public class CitiesController { // todo: swagger
+
+    // todo: tests (unit and controller)
 
     private final CitiesService citiesService;
 

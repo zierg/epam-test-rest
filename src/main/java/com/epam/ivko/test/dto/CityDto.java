@@ -1,4 +1,4 @@
-package com.epam.ivko.test.rest;
+package com.epam.ivko.test.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;

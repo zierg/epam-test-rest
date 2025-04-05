@@ -1,4 +1,4 @@
-package com.epam.ivko.test.storage.entity;
+package com.epam.ivko.test.entity;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

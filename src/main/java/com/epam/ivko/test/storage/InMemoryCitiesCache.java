@@ -1,6 +1,6 @@
 package com.epam.ivko.test.storage;
 
-import com.epam.ivko.test.storage.entity.City;
+import com.epam.ivko.test.entity.City;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -11,7 +11,7 @@ import java.util.Set;
 @Component
 public class InMemoryCitiesCache implements CitiesCache {
 
-    private final Set<City> cities;
+    private final Set<City> cities;  // todo: map
     private final Set<String> cityNames = new HashSet<>();
 
     public InMemoryCitiesCache() {

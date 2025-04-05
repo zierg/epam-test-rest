@@ -1,6 +1,6 @@
 package com.epam.ivko.test.storage;
 
-import com.epam.ivko.test.storage.entity.City;
+import com.epam.ivko.test.entity.City;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

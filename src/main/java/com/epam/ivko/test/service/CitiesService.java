@@ -1,8 +1,8 @@
 package com.epam.ivko.test.service;
 
-import com.epam.ivko.test.rest.CityDto;
+import com.epam.ivko.test.dto.CityDto;
 import com.epam.ivko.test.storage.CitiesStorage;
-import com.epam.ivko.test.storage.entity.City;
+import com.epam.ivko.test.entity.City;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class CitiesService {
     }
 
     public void addCity(CityDto cityDto) {
-        City city = new City(
+        City city = new City( // todo: mapper
                 cityDto.getName(),
                 cityDto.getArea(),
                 cityDto.getPopulation()
@@ -30,7 +30,7 @@ public class CitiesService {
     }
 
     public List<CityDto> getCities(GetCitiesParams params) {
-        Stream<CityDto> stream = storage.getAll().stream().map(this::createDto);
+        Stream<CityDto> stream = storage.getAll().stream().map(this::createDto); // todo: mapper
 
         stream = processNameContains(params, stream);
         stream = processDensity(params, stream);

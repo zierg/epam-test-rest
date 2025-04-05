@@ -1,6 +1,6 @@
 package com.epam.ivko.test.service;
 
-import com.epam.ivko.test.rest.CityDto;
+import com.epam.ivko.test.dto.CityDto;
 import lombok.Getter;
 
 import java.util.Comparator;
