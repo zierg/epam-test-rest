@@ -17,7 +17,7 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 @RestController
-public class CitiesController { // todo: swagger
+public class CitiesController {
 
     // todo: tests (unit and controller)
 
