@@ -18,6 +18,8 @@ mvnw clean spring-boot:run
 ```
 
 ## Testing
+Detailed information about REST endpoints can be found at http://localhost:8080/swagger-ui/index.html
+
 The testing URL: `http://localhost:8080/cities`
 
 ### Getting cities

@@ -13,6 +13,6 @@ import lombok.experimental.FieldDefaults;
 public class City {
 
     String name;
-    double area;
-    int population;
+    Double area;
+    Integer population;
 }
