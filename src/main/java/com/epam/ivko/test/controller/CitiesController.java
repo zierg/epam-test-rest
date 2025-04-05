@@ -49,17 +49,13 @@ public class CitiesController {
         return citiesService.getCities(params);
     }
 
-    @PostMapping("/cities")
+    @PutMapping("/cities")
     @JsonView(JsonViews.RequestView.class)
-    @Operation(summary = "Add a city")
+    @Operation(summary = "Add or update a city")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "City successfully created"
-            ),
-            @ApiResponse(
-                    responseCode = "409",
-                    description = "City with that name already exists"
+                    description = "City successfully created/updated"
             )
     })
     public void addCity(@RequestBody CityDto city) {

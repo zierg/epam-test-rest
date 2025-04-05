@@ -29,30 +29,11 @@ public class CitiesService {
     }
 
     public List<CityDto> getCities(GetCitiesParams params) {
-        Stream<CityDto> stream = storage.getAll().stream().map(cityMapper::toDto);
+        Stream<CityDto> stream = storage.getCities(params).stream().map(cityMapper::toDto);
 
-        stream = processNameContains(params, stream);
         stream = processDensity(params, stream);
-        stream = processSorting(params, stream);
 
         return stream.toList();
-    }
-
-    private Stream<CityDto> processNameContains(
-            GetCitiesParams params,
-            Stream<CityDto> stream
-    ) {
-        String nameContains = params.getNameContains();
-
-        if (nameContains == null || nameContains.isEmpty()) {
-            return stream;
-        }
-
-        String nameContainsLower = nameContains.toLowerCase();
-
-        return stream.filter(
-                city -> city.getName().toLowerCase().contains(nameContainsLower)
-        );
     }
 
     private Stream<CityDto> processDensity(
@@ -68,22 +49,5 @@ public class CitiesService {
     private void enhanceWithDensity(CityDto city) {
         Double density = city.getPopulation() / city.getArea();
         city.setDensity(density);
-    }
-
-    private Stream<CityDto> processSorting(
-            GetCitiesParams params,
-            Stream<CityDto> stream
-    ) {
-        var sortingComparator = params.getSorting().getComparator();
-
-        if (sortingComparator == null) {
-            return stream;
-        }
-
-        if (params.isSortDescending()) {
-            sortingComparator = sortingComparator.reversed();
-        }
-
-       return stream.sorted(sortingComparator);
     }
 }

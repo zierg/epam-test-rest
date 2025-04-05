@@ -21,7 +21,7 @@ public class JsonPersistentStorage {
     private final String additionalCitiesFilePath;
     private final ObjectMapper mapper;
 
-    public JsonPersistentStorage(  // todo: h2
+    public JsonPersistentStorage(
             @Value("${cities.source-file}") String filePath,
             @Value("${cities.additional-source-file:#{null}}") String additionalCitiesFilePath,
             ObjectMapper mapper

@@ -1,21 +1,18 @@
 package com.epam.ivko.test.service;
 
-import com.epam.ivko.test.dto.CityDto;
 import lombok.Getter;
-
-import java.util.Comparator;
 
 @Getter
 @SuppressWarnings("unused")
 public enum CitiesSorting {
     NONE(null),
-    NAME(Comparator.comparing(CityDto::getName)),
-    POPULATION(Comparator.comparing(CityDto::getPopulation)),
-    AREA(Comparator.comparing(CityDto::getArea));
+    NAME("name"),
+    POPULATION("population"),
+    AREA("area");
 
-    private final Comparator<CityDto> comparator;
+    private final String fieldName;
 
-    CitiesSorting(Comparator<CityDto> comparator) {
-        this.comparator = comparator;
+    CitiesSorting(String fieldName) {
+        this.fieldName = fieldName;
     }
 }
