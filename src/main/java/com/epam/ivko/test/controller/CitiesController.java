@@ -5,12 +5,10 @@ import com.epam.ivko.test.dto.JsonViews;
 import com.epam.ivko.test.service.CitiesService;
 import com.epam.ivko.test.service.CitiesSorting;
 import com.epam.ivko.test.service.GetCitiesParams;
-import com.epam.ivko.test.storage.IncorrectCityException;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -66,11 +64,5 @@ public class CitiesController {
     })
     public void addCity(@RequestBody CityDto city) {
         citiesService.addCity(city);
-    }
-
-    @ExceptionHandler(IncorrectCityException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public String handleException(IncorrectCityException ex) {
-        return ex.getMessage();
     }
 }
