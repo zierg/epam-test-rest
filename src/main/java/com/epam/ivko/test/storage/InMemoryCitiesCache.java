@@ -3,29 +3,21 @@ package com.epam.ivko.test.storage;
 import com.epam.ivko.test.entity.City;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @SuppressWarnings("unused")
 @Component
 public class InMemoryCitiesCache implements CitiesCache {
 
-    private final Set<City> cities;  // todo: map
-    private final Set<String> cityNames = new HashSet<>();
-
-    public InMemoryCitiesCache() {
-        this.cities = new HashSet<>();
-    }
+    private final Map<String, City> cities = new HashMap<>();  // key - city.name
 
     @Override
     public void put(City city) {
-        if (cityNames.contains(city.getName())) {
+        if (cities.containsKey(city.getName())) {
             throw new IncorrectCityException("City already exists");
         }
 
-        cities.add(city);
-        cityNames.add(city.getName());
+        cities.put(city.getName(), city);
     }
 
     @Override
@@ -34,7 +26,7 @@ public class InMemoryCitiesCache implements CitiesCache {
     }
 
     @Override
-    public Set<City> getAll() {
-        return cities;
+    public Collection<City> getAll() {
+        return cities.values();
     }
 }

@@ -4,7 +4,7 @@ import com.epam.ivko.test.entity.City;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.Collection;
 
 @Service
 public class CitiesStorage {
@@ -33,12 +33,12 @@ public class CitiesStorage {
         }
     }
 
-    public Set<City> getAll() {
+    public Collection<City> getAll() {
         return cache.getAll();
     }
 
     private void loadCities() {
-        Set<City> cities = jsonStorage.getCities();
+        Collection<City> cities = jsonStorage.getCities();
         cache.put(cities);
     }
 }

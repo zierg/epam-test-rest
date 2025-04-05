@@ -9,6 +9,7 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -41,7 +42,7 @@ public class JsonPersistentStorage {
         }
     }
 
-    public Set<City> getCities() {
+    public Collection<City> getCities() {
         Set<City> cities = new HashSet<>(loadDefaultCities());
         Set<City> additionalCities = loadAdditionalCities();
 
