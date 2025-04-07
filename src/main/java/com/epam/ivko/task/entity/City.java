@@ -1,4 +1,4 @@
-package com.epam.ivko.test.entity;
+package com.epam.ivko.task.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

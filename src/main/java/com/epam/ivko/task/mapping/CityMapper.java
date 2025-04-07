@@ -1,7 +1,7 @@
-package com.epam.ivko.test.mapping;
+package com.epam.ivko.task.mapping;
 
-import com.epam.ivko.test.dto.CityDto;
-import com.epam.ivko.test.entity.City;
+import com.epam.ivko.task.dto.CityDto;
+import com.epam.ivko.task.entity.City;
 import org.springframework.stereotype.Component;
 
 @Component

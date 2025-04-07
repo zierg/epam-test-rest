@@ -1,4 +1,4 @@
-package com.epam.ivko.test.dto;
+package com.epam.ivko.task.dto;
 
 public class JsonViews {
 

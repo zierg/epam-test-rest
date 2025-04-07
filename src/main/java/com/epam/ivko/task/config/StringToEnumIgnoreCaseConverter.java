@@ -1,4 +1,4 @@
-package com.epam.ivko.test.config;
+package com.epam.ivko.task.config;
 
 import org.springframework.stereotype.Component;
 

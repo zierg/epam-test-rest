@@ -1,6 +1,6 @@
-package com.epam.ivko.test.storage;
+package com.epam.ivko.task.storage;
 
-import com.epam.ivko.test.entity.City;
+import com.epam.ivko.task.entity.City;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;

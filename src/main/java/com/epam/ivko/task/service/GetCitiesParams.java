@@ -1,4 +1,4 @@
-package com.epam.ivko.test.service;
+package com.epam.ivko.task.service;
 
 import lombok.AccessLevel;
 import lombok.Builder;

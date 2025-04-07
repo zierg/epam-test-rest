@@ -1,6 +1,6 @@
-package com.epam.ivko.test.storage;
+package com.epam.ivko.task.storage;
 
-import com.epam.ivko.test.entity.City;
+import com.epam.ivko.task.entity.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;

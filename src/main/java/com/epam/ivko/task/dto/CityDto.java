@@ -1,4 +1,4 @@
-package com.epam.ivko.test.dto;
+package com.epam.ivko.task.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;

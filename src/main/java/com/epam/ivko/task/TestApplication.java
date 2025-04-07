@@ -1,4 +1,4 @@
-package com.epam.ivko.test;
+package com.epam.ivko.task;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

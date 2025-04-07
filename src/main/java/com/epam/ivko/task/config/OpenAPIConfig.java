@@ -1,4 +1,4 @@
-package com.epam.ivko.test.config;
+package com.epam.ivko.task.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

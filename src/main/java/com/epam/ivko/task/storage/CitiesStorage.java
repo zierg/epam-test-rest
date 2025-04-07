@@ -1,8 +1,8 @@
-package com.epam.ivko.test.storage;
+package com.epam.ivko.task.storage;
 
-import com.epam.ivko.test.entity.City;
-import com.epam.ivko.test.service.CitiesSorting;
-import com.epam.ivko.test.service.GetCitiesParams;
+import com.epam.ivko.task.entity.City;
+import com.epam.ivko.task.service.CitiesSorting;
+import com.epam.ivko.task.service.GetCitiesParams;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;

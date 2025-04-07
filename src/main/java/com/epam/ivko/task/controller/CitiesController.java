@@ -1,10 +1,10 @@
-package com.epam.ivko.test.controller;
+package com.epam.ivko.task.controller;
 
-import com.epam.ivko.test.dto.CityDto;
-import com.epam.ivko.test.dto.JsonViews;
-import com.epam.ivko.test.service.CitiesService;
-import com.epam.ivko.test.service.CitiesSorting;
-import com.epam.ivko.test.service.GetCitiesParams;
+import com.epam.ivko.task.dto.CityDto;
+import com.epam.ivko.task.dto.JsonViews;
+import com.epam.ivko.task.service.CitiesService;
+import com.epam.ivko.task.service.CitiesSorting;
+import com.epam.ivko.task.service.GetCitiesParams;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

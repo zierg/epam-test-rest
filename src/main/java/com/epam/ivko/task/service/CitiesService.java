@@ -1,9 +1,9 @@
-package com.epam.ivko.test.service;
+package com.epam.ivko.task.service;
 
-import com.epam.ivko.test.dto.CityDto;
-import com.epam.ivko.test.mapping.CityMapper;
-import com.epam.ivko.test.storage.CitiesStorage;
-import com.epam.ivko.test.entity.City;
+import com.epam.ivko.task.dto.CityDto;
+import com.epam.ivko.task.mapping.CityMapper;
+import com.epam.ivko.task.storage.CitiesStorage;
+import com.epam.ivko.task.entity.City;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
