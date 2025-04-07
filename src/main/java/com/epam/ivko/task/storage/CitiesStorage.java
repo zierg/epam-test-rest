@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,7 +39,7 @@ public class CitiesStorage {
         }
     }
 
-    public Collection<City> getCities(GetCitiesParams params) {
+    public List<City> getCities(GetCitiesParams params) {
         Optional<Specification<City>> nameContainsSpec = getNameContainsSpec(params);
         Sort sort = getSorting(params);
 

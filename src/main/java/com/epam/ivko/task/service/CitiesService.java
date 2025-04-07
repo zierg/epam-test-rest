@@ -1,9 +1,9 @@
 package com.epam.ivko.task.service;
 
 import com.epam.ivko.task.dto.CityDto;
+import com.epam.ivko.task.entity.City;
 import com.epam.ivko.task.mapping.CityMapper;
 import com.epam.ivko.task.storage.CitiesStorage;
-import com.epam.ivko.task.entity.City;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,13 +14,16 @@ public class CitiesService {
 
     private final CitiesStorage storage;
     private final CityMapper cityMapper;
+    private final DensityCalculator densityEnhancer;
 
     public CitiesService(
             CitiesStorage storage,
-            CityMapper cityMapper
+            CityMapper cityMapper,
+            DensityCalculator densityEnhancer
     ) {
         this.storage = storage;
         this.cityMapper = cityMapper;
+        this.densityEnhancer = densityEnhancer;
     }
 
     public void addCity(CityDto cityDto) {
@@ -41,13 +44,13 @@ public class CitiesService {
             Stream<CityDto> stream
     ) {
         if (params.isEnhanceWithDensity()) {
-            stream = stream.peek(this::enhanceWithDensity);
+            stream = stream.peek(
+                    dto -> dto.setDensity(densityEnhancer.calculateDensity(
+                            dto.getPopulation(),
+                            dto.getArea()
+                    ))
+            );
         }
         return stream;
-    }
-
-    private void enhanceWithDensity(CityDto city) {
-        Double density = city.getPopulation() / city.getArea();
-        city.setDensity(density);
     }
 }
