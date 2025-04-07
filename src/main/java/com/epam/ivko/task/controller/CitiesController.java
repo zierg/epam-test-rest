@@ -17,8 +17,6 @@ import java.util.List;
 @RestController
 public class CitiesController {
 
-    // todo: tests (unit and controller)
-
     private final CitiesService citiesService;
 
     public CitiesController(
@@ -49,7 +47,7 @@ public class CitiesController {
         return citiesService.getCities(params);
     }
 
-    @PutMapping("/cities")
+    @PutMapping("/cities/{cityName}")
     @JsonView(JsonViews.RequestView.class)
     @Operation(summary = "Add or update a city")
     @ApiResponses(value = {
@@ -58,7 +56,11 @@ public class CitiesController {
                     description = "City successfully created/updated"
             )
     })
-    public void addCity(@RequestBody CityDto city) {
+    public void addCity(
+            @PathVariable("cityName") String cityName,
+            @RequestBody CityDto city
+    ) {
+        city.setName(cityName);
         citiesService.addCity(city);
     }
 }

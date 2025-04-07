@@ -20,9 +20,10 @@ mvnw clean spring-boot:run
 ## Testing
 Detailed information about REST endpoints can be found at http://localhost:8080/swagger-ui/index.html
 
+### Getting cities
+
 The testing URL: `http://localhost:8080/cities`
 
-### Getting cities
 * To get all cities, simply execute GET request on testing URL
 * To add density to cities, specify `add-density` GET request parameter with value = `true`:
 ```
@@ -40,10 +41,13 @@ http://localhost:8080/cities?add-density=true&sort-by=population&name-contains=n
 ```
 
 ### Adding a city
-To add a city, execute POST request on testing URL with the following body structure:
+
+The testing URL: `http://localhost:8080/cities/{cityName}`
+
+To add a city, execute PUT request on the testing URL (specify the cityName) 
+with the following body structure:
 ```
 {
-    "name": "City name",
     "area": 100,  // double value
     "population": 1000000  // integer value
 }

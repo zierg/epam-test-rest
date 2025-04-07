@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SuppressWarnings("unused")
@@ -41,6 +42,29 @@ public class CitiesControllerTest {
     private CitiesService citiesService;
 
     @Test
+    public void testAddCity() throws Exception {
+        CityDto cityDto = new CityDto();
+        cityDto.setArea(30.30);
+        cityDto.setPopulation(30);
+
+        String cityName = "testCity";
+
+        mockMvc.perform(
+                put("/cities/{cityName}", cityName)
+                        .content(objectMapper.writeValueAsString(cityDto))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk());
+
+        CityDto expectedDto = new CityDto(
+                cityName,
+                cityDto.getArea(),
+                cityDto.getPopulation()
+        );
+
+        verify(citiesService).addCity(expectedDto);
+    }
+
+    @Test
     public void testGetCitiesEndpointWithoutParams() throws Exception {
         List<CityDto> expectedResponse = List.of(new CityDto(
                 "testCity",
@@ -54,8 +78,8 @@ public class CitiesControllerTest {
                 .thenReturn(expectedResponse);
 
         MvcResult result = mockMvc.perform(
-                get("/cities")
-                        .contentType(MediaType.APPLICATION_JSON)
+                        get("/cities")
+                                .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(status().isOk())
                 .andReturn();
@@ -87,12 +111,12 @@ public class CitiesControllerTest {
                 .thenReturn(expectedResponse);
 
         MvcResult result = mockMvc.perform(
-                get("/cities")
-                        .param("add-density", "true")
-                        .param("sort-by", "name")
-                        .param("sort-descending", "true")
-                        .param("name-contains", nameContains)
-                        .contentType(MediaType.APPLICATION_JSON)
+                        get("/cities")
+                                .param("add-density", "true")
+                                .param("sort-by", "name")
+                                .param("sort-descending", "true")
+                                .param("name-contains", nameContains)
+                                .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(status().isOk())
                 .andReturn();
@@ -126,7 +150,8 @@ public class CitiesControllerTest {
     private List<CityDto> convertResponseToDto(MvcResult result) throws Exception {
         return objectMapper.readValue(
                 result.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
     }
 }

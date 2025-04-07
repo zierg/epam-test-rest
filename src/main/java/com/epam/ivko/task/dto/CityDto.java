@@ -15,7 +15,7 @@ import lombok.experimental.FieldDefaults;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CityDto {
 
-    @JsonView(JsonViews.RequestView.class)
+    @JsonView(JsonViews.ResponseView.class)
     String name;
 
     @JsonView(JsonViews.RequestView.class)
