@@ -1,10 +1,14 @@
-package com.epam.ivko.test.rest;
+package com.epam.ivko.task.controller;
 
-import com.epam.ivko.test.service.CitiesService;
-import com.epam.ivko.test.service.CitiesSorting;
-import com.epam.ivko.test.service.GetCitiesParams;
-import com.epam.ivko.test.storage.IncorrectCityException;
-import org.springframework.http.HttpStatus;
+import com.epam.ivko.task.dto.CityDto;
+import com.epam.ivko.task.dto.JsonViews;
+import com.epam.ivko.task.service.CitiesService;
+import com.epam.ivko.task.service.CitiesSorting;
+import com.epam.ivko.task.service.GetCitiesParams;
+import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +26,11 @@ public class CitiesController {
     }
 
     @GetMapping("/cities")
+    @JsonView(JsonViews.ResponseView.class)
+    @Operation(
+            summary = "Get list of cities",
+            description = "Returns a list of cities with some additional changes if specified"
+    )
     public List<CityDto> getCities(
             @RequestParam(name = "add-density", required = false, defaultValue = "false") boolean enhanceWithDensity,
             @RequestParam(name = "sort-by", required = false, defaultValue = "none") CitiesSorting citiesSorting,
@@ -38,14 +47,20 @@ public class CitiesController {
         return citiesService.getCities(params);
     }
 
-    @PostMapping("/cities")
-    public void addCity(@RequestBody CityDto city) {
+    @PutMapping("/cities/{cityName}")
+    @JsonView(JsonViews.RequestView.class)
+    @Operation(summary = "Add or update a city")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "City successfully created/updated"
+            )
+    })
+    public void addCity(
+            @PathVariable("cityName") String cityName,
+            @RequestBody CityDto city
+    ) {
+        city.setName(cityName);
         citiesService.addCity(city);
-    }
-
-    @ExceptionHandler(IncorrectCityException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String handleException(IncorrectCityException ex) {
-        return ex.getMessage();
     }
 }

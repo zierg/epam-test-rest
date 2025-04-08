@@ -1,5 +1,8 @@
-package com.epam.ivko.test.storage.entity;
+package com.epam.ivko.task.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,9 +13,13 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Entity
+@Table(name = "cities")
 public class City {
 
+    @Id
     String name;
-    double area;
-    int population;
+
+    Double area;
+    Integer population;
 }

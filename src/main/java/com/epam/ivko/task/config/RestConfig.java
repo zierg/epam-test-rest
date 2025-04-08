@@ -1,17 +1,17 @@
-package com.epam.ivko.test.config;
+package com.epam.ivko.task.config;
 
-import com.epam.ivko.test.service.CitiesSorting;
+import com.epam.ivko.task.service.CitiesSorting;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.bind.annotation.InitBinder;
 
 @SuppressWarnings("unused")
-@ControllerAdvice
-public class WebConfig {
+@RestControllerAdvice
+public class RestConfig {
 
     private final StringToEnumIgnoreCaseConverter stringToEnumIgnoreCaseConverter;
 
-    public WebConfig(StringToEnumIgnoreCaseConverter stringToEnumIgnoreCaseConverter) {
+    public RestConfig(StringToEnumIgnoreCaseConverter stringToEnumIgnoreCaseConverter) {
         this.stringToEnumIgnoreCaseConverter = stringToEnumIgnoreCaseConverter;
     }
 

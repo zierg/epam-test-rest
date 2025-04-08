@@ -1,13 +1,15 @@
-package com.epam.ivko.test.service;
+package com.epam.ivko.task.service;
 
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
 @Getter
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@EqualsAndHashCode
 public class GetCitiesParams {
 
     @Builder.Default

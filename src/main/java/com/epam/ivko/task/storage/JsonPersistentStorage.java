@@ -1,6 +1,6 @@
-package com.epam.ivko.test.storage;
+package com.epam.ivko.task.storage;
 
-import com.epam.ivko.test.storage.entity.City;
+import com.epam.ivko.task.entity.City;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +9,7 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -41,7 +42,7 @@ public class JsonPersistentStorage {
         }
     }
 
-    public Set<City> getCities() {
+    public Collection<City> getCities() {
         Set<City> cities = new HashSet<>(loadDefaultCities());
         Set<City> additionalCities = loadAdditionalCities();
 
