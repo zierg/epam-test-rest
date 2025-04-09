@@ -9,7 +9,7 @@
 7. Improve the UI by highlighting rows of cities having a population over 1 million.
 
 ## System requirements:
-* Java 11 (tested on Java 24)
+* Java 17 (tested on Java 24)
 * Maven (tested on 3.9.9)
 
 ## How to launch: execute the following command from the project directory
